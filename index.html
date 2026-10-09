@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atharv Bhosale — Data Science & Machine Learning</title>
+  <meta name="description"
+    content="Portfolio of Atharv Bhosale — data scientist working across machine learning, GenAI and MLOps. Kolhapur, India.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0a08;
+      --bg-2: #12100d;
+      --ink: #ece5da;
+      --muted: rgba(236, 229, 218, .56);
+      --faint: rgba(236, 229, 218, .34);
+      --line: rgba(236, 229, 218, .14);
+      --accent: #c9905a;
+      --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #14100c
+    }
+
+    img {
+      display: block;
+      max-width: 100%
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    a:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 4px
+    }
+
+    .wrap {
+      padding-left: clamp(20px, 4vw, 56px);
+      padding-right: clamp(20px, 4vw, 56px)
+    }
+
+    /* ---------- nav ---------- */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px clamp(20px, 4vw, 56px);
+      transition: background .5s, backdrop-filter .5s;
+    }
+
+    .nav.scrolled {
+      background: linear-gradient(rgba(12, 10, 8, .88), rgba(12, 10, 8, 0));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px)
+    }
+
+    .nav .brand {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .nav .brand b {
+      color: var(--ink);
+      font-weight: 400
+    }
+
+    .nav ul {
+      display: flex;
+      gap: clamp(16px, 2.4vw, 36px);
+      list-style: none
+    }
+
+    .nav ul a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      padding: 4px 0;
+      transition: color .3s
+    }
+
+    .nav ul a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0;
+      background: var(--accent);
+      transition: width .35s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .nav ul a:hover {
+      color: var(--ink)
+    }
+
+    .nav ul a:hover::after {
+      width: 100%
+    }
+
+    /* ---------- hero ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      min-height: 640px;
+      overflow: hidden
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: -12% 0 0 0;
+      will-change: transform
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 112%;
+      object-fit: cover
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12, 10, 8, .55) 0%, rgba(12, 10, 8, .08) 38%, rgba(12, 10, 8, .32) 72%, rgba(12, 10, 8, .92) 100%)
+    }
+
+    .hero-content {
+      position: absolute;
+      left: clamp(20px, 4vw, 56px);
+      right: clamp(20px, 4vw, 56px);
+      bottom: clamp(48px, 9vh, 110px);
+      z-index: 2
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 2.2rem
+    }
+
+    .kicker::before {
+      content: "";
+      display: inline-block;
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-right: 14px;
+      transform: translateY(-1px)
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3rem, 8.6vw, 7.6rem);
+      line-height: .98;
+      letter-spacing: -.02em;
+      max-width: 12ch
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent)
+    }
+
+    .hero-sub {
+      margin-top: 2.4rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    .hero-scroll {
+      position: absolute;
+      right: clamp(20px, 4vw, 56px);
+      bottom: clamp(48px, 9vh, 110px);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl
+    }
+
+    .hero-scroll i {
+      display: block;
+      width: 1px;
+      height: 64px;
+      background: var(--line);
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-scroll i::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -40%;
+      width: 1px;
+      height: 40%;
+      background: var(--accent);
+      animation: drip 2.2s cubic-bezier(.16, 1, .3, 1) infinite
+    }
+
+    @keyframes drip {
+      to {
+        top: 110%
+      }
+    }
+
+    /* ---------- section furniture ---------- */
+    section {
+      position: relative
+    }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .sec-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line)
+    }
+
+    .h-serif {
+      font-family: var(--serif);
+      font-weight: 300;
+      letter-spacing: -.015em
+    }
+
+    /* ---------- works head ---------- */
+    .works-head {
+      padding: clamp(90px, 16vh, 170px) 0 clamp(40px, 7vh, 80px)
+    }
+
+    .works-head h2 {
+      font-size: clamp(2.4rem, 5.6vw, 4.8rem);
+      line-height: 1.04;
+      margin-top: 1.6rem;
+      max-width: 16ch
+    }
+
+    .works-head h2 em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .works-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 2.6rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    /* ---------- work entries ---------- */
+    .work {
+      padding-bottom: clamp(80px, 13vh, 150px)
+    }
+
+    .work-media {
+      position: relative;
+      height: min(88vh, 860px);
+      overflow: hidden;
+      background: var(--bg-2)
+    }
+
+    .work-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+      transition: transform 1.4s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .work:hover .work-media img {
+      transform: scale(1.0)
+    }
+
+    .work-media .veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12, 10, 8, .18), transparent 30%, transparent 70%, rgba(12, 10, 8, .5));
+      pointer-events: none
+    }
+
+    .work-info {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(24px, 4vw, 64px);
+      padding-top: clamp(28px, 4.5vh, 48px)
+    }
+
+    .work:nth-of-type(even) .work-info {
+      direction: rtl
+    }
+
+    .work:nth-of-type(even) .work-info>* {
+      direction: ltr;
+      text-align: right
+    }
+
+    .work:nth-of-type(even) .work-info p {
+      margin-left: auto
+    }
+
+    .work-idx {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 2.1
+    }
+
+    .work-idx b {
+      color: var(--accent);
+      font-weight: 400
+    }
+
+    .work-info h3 {
+      font-size: clamp(1.9rem, 3.8vw, 3.4rem);
+      line-height: 1.05;
+      margin-bottom: 1.4rem
+    }
+
+    .work-info h3 a {
+      transition: color .3s
+    }
+
+    .work-info h3 a:hover {
+      color: var(--accent)
+    }
+
+    .work-info p {
+      color: var(--muted);
+      max-width: 52ch;
+      font-size: clamp(.95rem, 1.05vw, 1.06rem)
+    }
+
+    .case-link {
+      display: inline-block;
+      margin-top: 1.8rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      padding: 13px 26px;
+      transition: background .35s, color .35s, border-color .35s
+    }
+
+    .case-link:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #14100c
+    }
+
+    .case-link::before {
+      content: "[ "
+    }
+
+    .case-link::after {
+      content: " ]"
+    }
+
+    /* ---------- about ---------- */
+    .about {
+      border-top: 1px solid var(--line);
+      padding: clamp(90px, 15vh, 160px) 0
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: clamp(28px, 5vw, 90px);
+      margin-top: 3rem
+    }
+
+    .about-grid .lede {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.6vw, 2.3rem);
+      line-height: 1.32;
+      font-weight: 300
+    }
+
+    .about-grid .lede em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .about-grid .body {
+      color: var(--muted);
+      margin-top: 1.8rem;
+      font-size: clamp(.95rem, 1.05vw, 1.05rem)
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: clamp(40px, 7vh, 72px)
+    }
+
+    .stat {
+      background: var(--bg);
+      padding: clamp(20px, 2.6vw, 36px)
+    }
+
+    .stat .n {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      line-height: 1;
+      color: var(--ink)
+    }
+
+    .stat .n span {
+      color: var(--accent)
+    }
+
+    .stat .l {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-top: .9rem
+    }
+
+    /* ---------- experience / research ---------- */
+    .xp {
+      border-top: 1px solid var(--line);
+      padding: clamp(90px, 15vh, 160px) 0
+    }
+
+    .rows {
+      margin-top: 3rem;
+      border-top: 1px solid var(--line)
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr .5fr;
+      gap: clamp(20px, 3vw, 56px);
+      padding: clamp(26px, 3.6vh, 40px) 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      transition: background .4s, padding-left .4s
+    }
+
+    .row:hover {
+      background: rgba(201, 144, 90, .05);
+      padding-left: 14px
+    }
+
+    .row .role {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+      line-height: 1.2
+    }
+
+    .row .role small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: .7rem
+    }
+
+    .row .desc {
+      color: var(--muted);
+      font-size: .98rem;
+      max-width: 56ch
+    }
+
+    .row .when {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--faint);
+      text-align: right
+    }
+
+    /* ---------- skills ---------- */
+    .skills {
+      border-top: 1px solid var(--line);
+      padding: clamp(90px, 15vh, 160px) 0
+    }
+
+    .skill-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 3vw, 48px);
+      margin-top: 3.2rem
+    }
+
+    .skill-col h4 {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .skill-col ul {
+      list-style: none;
+      margin-top: 8px
+    }
+
+    .skill-col li {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .95rem;
+      transition: color .3s, padding-left .3s
+    }
+
+    .skill-col li:hover {
+      color: var(--ink);
+      padding-left: 8px
+    }
+
+    /* ---------- contact ---------- */
+    .contact {
+      border-top: 1px solid var(--line);
+      padding: clamp(100px, 17vh, 180px) 0 0;
+      overflow: hidden
+    }
+
+    .contact h2 {
+      font-size: clamp(2.6rem, 6.6vw, 6rem);
+      line-height: 1.02;
+      max-width: 14ch
+    }
+
+    .contact h2 em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(20px, 4vw, 60px);
+      align-items: center;
+      margin-top: clamp(36px, 6vh, 64px)
+    }
+
+    .mail {
+      font-family: var(--mono);
+      font-size: clamp(.85rem, 1.3vw, 1.05rem);
+      letter-spacing: .14em;
+      color: var(--ink);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 6px;
+      transition: color .3s
+    }
+
+    .mail:hover {
+      color: var(--accent)
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 13px 24px;
+      transition: all .35s
+    }
+
+    .pill:hover {
+      background: var(--ink);
+      color: #14100c;
+      border-color: var(--ink)
+    }
+
+    .footer {
+      margin-top: clamp(80px, 13vh, 140px);
+      border-top: 1px solid var(--line);
+      padding: 30px 0 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--faint)
+    }
+
+    .footer a:hover {
+      color: var(--accent)
+    }
+
+    /* ---------- gallery ---------- */
+    .gallery-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px 0;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--line);
+    }
+
+    .gallery-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-container::-webkit-scrollbar-track {
+      background: var(--line);
+    }
+
+    .gallery-container::-webkit-scrollbar-thumb {
+      background-color: var(--accent);
+      border-radius: 4px;
+    }
+
+    .gallery-item {
+      flex: 0 0 85%;
+      max-width: 500px;
+      scroll-snap-align: center;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    .gallery-item-caption {
+      padding: 16px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      background: #14100c;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-item {
+        flex: 0 0 45%;
+      }
+    }
+
+    /* ---------- reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 1s cubic-bezier(.16, 1, .3, 1), transform 1s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    .reveal-img {
+      clip-path: inset(10% 6% 10% 6%);
+      transition: clip-path 1.3s cubic-bezier(.16, 1, .3, 1)
+    }
+
+    .reveal-img.in {
+      clip-path: inset(0 0 0 0)
+    }
+
+    @media (max-width:900px) {
+      .nav ul li:nth-child(-n+2) {
+        display: none
+      }
+
+      .work-info,
+      .about-grid {
+        grid-template-columns: 1fr
+      }
+
+      .work:nth-of-type(even) .work-info>* {
+        text-align: left
+      }
+
+      .work:nth-of-type(even) .work-info p {
+        margin-left: 0
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 12px
+      }
+
+      .row .when {
+        text-align: left
+      }
+
+      .skill-cols {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .hero-scroll {
+        display: none
+      }
+    }
+
+    @media (max-width:560px) {
+      .skill-cols {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .reveal,
+      .reveal-img {
+        opacity: 1;
+        transform: none;
+        clip-path: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top"><b>Data Scientist, Athlete & Artist</b>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#achievements">Gallery</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="top">
+    <div class="hero-media" id="heroMedia">
+      <!-- REPLACE: images/hero.svg → your own hero image (keep filename or update src) -->
+      <img src="images/hero2.JPG" alt="Atmospheric placeholder — replace with a wide hero photograph">
+    </div>
+    <div class="hero-content">
+      <span class="kicker"></span>
+      <h1>Hola Amigos!<br><em>Mi Nombres Atharv</em></h1>
+      <p class="hero-sub">Create. Compete. Conquer.</p>
+    </div>
+    <div class="hero-scroll">Scroll<i></i></div>
+  </header>
+
+  <main>
+
+    <!-- ============ SELECTED WORK ============ -->
+    <section class="works-head wrap" id="work">
+      <span class="sec-label reveal">Project Work</span>
+      <h2 class="h-serif reveal">Simplicity Takes, <em>OBSESSION.</em></h2>
+      <div class="works-meta reveal"><span>Case index</span><span>01 — 07</span></div>
+    </section>
+
+    <!-- 01 -->
+    <article class="work wrap">
+      <figure class="work-media reveal-img"><img src="images/MMDD.jpeg"
+          alt="ML Model Monitoring and Drift Detection — project visual"></figure>
+      <div class="work-info">
+        <div class="work-idx reveal">
+          <b>01 / 07</b> — MLOps<br>Model Monitoring &amp; Drift<br>2026 · In progress
+        </div>
+        <div class="reveal">
+          <h3 class="h-serif">ML Model Monitoring &amp; Drift Detection</h3>
+          <p>An end-to-end monitoring framework guarding models in production — 25+ automated tests spanning univariate,
+            multivariate, data-quality, data-drift and concept-drift scenarios, with eight statistical detectors from KS
+            and Chi-Square to PSI, Wasserstein distance, Jensen–Shannon divergence, CUSUM and PCA-Mahalanobis, explained
+            through SHAP. Served by FastAPI, surfaced in a React dashboard, shipped in Docker.</p>
+          <!-- TODO: point this link at the exact repo when public -->
+          <a class="case-link" href="https://github.com/Atharv-1905/Model-Monitoring-And-Drift-Detection"
+            target="_blank" rel="noopener">View case</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 -->
+    <article class="work wrap">
+      <figure class="work-media reveal-img"><img src="images/IBM.png" alt="IBM Customer Churn MLOps — project visual">
+      </figure>
+      <div class="work-info">
+        <div class="work-idx reveal">
+          <b>04 / 07</b> — MLOps · Classification<br>Customer Churn<br>2026 · Shipped
+        </div>
+        <div class="reveal">
+          <h3 class="h-serif">IBM Customer Churn MLOps</h3>
+          <p>Built an end-to-end MLOps pipeline for IBM Customer Churn Prediction using MLflow, FastAPI, Docker, GitHub
+            Actions, and Kubernetes.
+            Achieved 74.02% accuracy with automated testing and scalable model deployment.</p>
+          <a class="case-link" href="https://github.com/Atharv-1905/ibm-customer-churn-mlops" target="_blank"
+            rel="noopener">View case</a>
+        </div>
+      </div>
+    </article>
+
+
+
+
+
+    <!-- 03 -->
+    <article class="work wrap">
+      <figure class="work-media reveal-img"><img src="images/MindTraceAI+.png" alt="MindTrace AI — project visual">
+      </figure>
+      <div class="work-info">
+        <div class="work-idx reveal">
+          <b>02 / 07</b> — GenAI · NLP · Vision<br>Emotional Intelligence<br>2026 · Shipped · Under review, Springer
+          Nature DSEJ (Q1)
+        </div>
+        <div class="reveal">
+          <h3 class="h-serif">MindTrace AI</h3>
+          <p>A real-time, multimodal emotional-intelligence system that reads text and imagery with Hugging Face
+            Transformers and computer vision — paired with an LLM-powered chatbot for semantic analysis and deeply
+            personalized responses. The research behind it is currently under review at Springer Nature's Data Science
+            and Engineering Journal.</p>
+          <!-- TODO: point this link at the exact repo when public -->
+          <a class="case-link" href="https://github.com/parth-ladage/MindTrace-AI" target="_blank" rel="noopener">View
+            case</a>
+        </div>
+      </div>
+    </article>
+
+
+
+
+
+    <!-- 04 -->
+    <article class="work wrap">
+      <figure class="work-media reveal-img"><img src="images/MatRiskAI.png" alt="MatRisk AI — project visual"></figure>
+      <div class="work-info">
+        <div class="work-idx reveal">
+          <b>03 / 07</b> — Applied ML<br>Dual-Domain Risk Intelligence<br>2026 · Shipped
+        </div>
+        <div class="reveal">
+          <h3 class="h-serif">MatRisk AI</h3>
+          <p>One system, two risk languages: physics-constrained material degradation and financial risk, modelled with
+            Scikit-Learn to R² scores of 0.43 and 0.47. Versioned data and models through DVC, validated with Pytest — a
+            reproducible-ML backbone behind a FastAPI and Streamlit front end, charted in Plotly.</p>
+          <a class="case-link" href="https://github.com/Atharv-1905/MatRisk-AI" target="_blank" rel="noopener">View
+            case</a>
+        </div>
+      </div>
+    </article>
+
+
+
+
+    <!-- 05 -->
+    <article class="work wrap">
+      <figure class="work-media reveal-img"><img src="images/GroMart.png" alt="GroMart — project visual"></figure>
+      <div class="work-info">
+        <div class="work-idx reveal">
+          <b>06 / 07</b> — E-Commerce<br>Grocery Platform<br>Shipped
+        </div>
+        <div class="reveal">
+          <h3 class="h-serif">GroMart</h3>
+          <p>A grocery store management and e-commerce platform offering an intuitive shopping experience.</p>
+          <a class="case-link" href="https://github.com/Atharv-1905/GroMart" target="_blank" rel="noopener">View
+            case</a>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="xp wrap" id="experience">
+      <span class="sec-label reveal">Experience</span>
+      <div class="rows">
+        <div class="row reveal">
+          <div class="role">Data Scientist Intern<small>Zettheta Algorithms Pvt. Ltd.</small></div>
+          <div class="desc">Developed AI and machine-learning solutions in Python — statistical analysis and data-driven
+            modelling to extract insight from complex datasets; applied ML and statistical methods to analyse, model and
+            evaluate risk across physics and financial domains.</div>
+          <div class="when">Jul 2026 — Aug 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="xp wrap" id="research" style="border-top:none;padding-top:0">
+      <span class="sec-label reveal">Research</span>
+      <div class="rows">
+        <div class="row reveal">
+          <div class="role">MindTrace AI<small>Under review · Springer Nature DSEJ</small></div>
+          <div class="desc">A multimodal, real-time emotional-intelligence architecture combining NLP, transformers and
+            computer vision with an LLM-driven semantic layer — submitted to Data Science and Engineering Journal
+            (Impact Factor 4.2, Q1).</div>
+          <div class="when">2026</div>
+        </div>
+        <div class="row reveal">
+          <div class="role">GroMart<small>Published · IJCRT</small></div>
+          <div class="desc">Research on grocery-market intelligence and demand analytics, published in the International
+            Journal of Creative Research Thoughts (2025–26), Impact Factor 9.17 (IJCRT metric via Google Scholar /
+            Semantic Scholar methodology).</div>
+          <div class="when">2025 — 26</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACHIEVEMENTS ============ -->
+    <section class="xp wrap" id="achievements">
+      <span class="sec-label reveal">Gallery</span>
+      <h2 class="h-serif reveal" style="margin-bottom: 30px;">Milestones & <em>Honors.</em></h2>
+      <div class="gallery-container reveal">
+        <div class="gallery-item">
+          <img src="images/img1.jpeg" alt="Achievement 1 placeholder">
+          <div class="gallery-item-caption">Achievement 1 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img2.jpeg" alt="Achievement 2 placeholder">
+          <div class="gallery-item-caption">Achievement 2 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img3.jpeg" alt="Achievement 3 placeholder">
+          <div class="gallery-item-caption">Achievement 3 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img4.jpg" alt="Achievement 4 placeholder">
+          <div class="gallery-item-caption">Achievement 4 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img5.jpeg" alt="Achievement 5 placeholder">
+          <div class="gallery-item-caption">Achievement 5 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img6.jpg" alt="Achievement 6 placeholder">
+          <div class="gallery-item-caption">Achievement 6 / Description</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/img7.png" alt="Achievement 6 placeholder">
+          <div class="gallery-item-caption">Achievement 6 / Description</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="skills wrap" id="skills">
+      <span class="sec-label reveal">Capabilities</span>
+      <div class="skill-cols">
+        <div class="skill-col reveal">
+          <h4>ML / DL</h4>
+          <ul>
+            <li>Scikit-Learn · XGBoost</li>
+            <li>TensorFlow · PyTorch</li>
+            <li>Supervised / Unsupervised ML</li>
+            <li>Hyperparameter tuning</li>
+            <li>Feature selection &amp; engineering</li>
+            <li>SHAP explainability</li>
+            <li>Computer vision · Transformers</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h4>AI / GenAI</h4>
+          <ul>
+            <li>LLMs · RAG pipelines</li>
+            <li>Hugging Face ecosystem</li>
+            <li>NLP &amp; semantic analysis</li>
+            <li>Embeddings</li>
+            <li>Generative AI</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h4>MLOps &amp; Cloud</h4>
+          <ul>
+            <li>Model monitoring &amp; drift detection</li>
+            <li>Model evaluation &amp; deployment</li>
+            <li>MLflow · DVC · Pytest</li>
+            <li>Docker · Git</li>
+            <li>AWS (EC2, S3) · GCP</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h4>Languages</h4>
+          <ul>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>Java</li>
+            <li>C</li>
+            <li>JavaScript / TypeScript</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h4>Frameworks</h4>
+          <ul>
+            <li>FastAPI · Flask</li>
+            <li>Streamlit</li>
+            <li>React · Node.js</li>
+            <li>Plotly</li>
+          </ul>
+        </div>
+        <div class="skill-col reveal">
+          <h4>Data</h4>
+          <ul>
+            <li>pandas · NumPy</li>
+            <li>EDA &amp; data analysis</li>
+            <li>Statistical analysis &amp; hypothesis testing</li>
+            <li>MySQL · PostgreSQL · MongoDB</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about wrap" id="about">
+      <span class="sec-label reveal">About</span>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="lede">Data Scientist by <em> Discipline</em>,
+            Athlete by<em> Grit</em>,
+            Artist by<em> Eye.</em>
+          </p>
+          <p class="body">Final-year Data Science student at KIT CoEK (CGPA 8.5)
+            with real-world experience shipping ML solutions at Zettheta Algorithms.
+            My research covers grocery demand analytics (IJCRT, IF 9.17)
+            and deep generative systems (currently under review with Springer Nature).
+            I care deeply about model honesty, post-deployment monitoring,
+            and building AI that feels intuitive to humans.</p>
+          <p class="body"> The Athlete inside me brings raw endurance to long debug cycles,
+            high-pressure execution, and a daily grind mindset that values incremental
+            gains and continuous performance optimization.</p>
+          <p class="body"> Artist side adds visual intuition to EDA and complex data storytelling,
+            creative problem-solving when default models fail, and human-centric empathy for the user experience.</p>
+        </div>
+        <div class="reveal" style="align-self:start">
+          <!-- REPLACE: images/portrait.svg → your own photograph -->
+          <img src="images/portrait.jpeg" alt="Portrait placeholder — replace with your photograph"
+            style="width:100%;border:1px solid var(--line);">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact wrap" id="contact">
+      <span class="sec-label reveal">Contact</span>
+      <h2 class="h-serif reveal" style="margin-top:3rem">BEWATERMYFRIEND</em></h2>
+      <div class="contact-row reveal">
+        <a class="mail" href="mailto:atharvbb17@gmail.com">atharvbb17@gmail.com</a>
+        <a class="pill" href="https://github.com/Atharv-1905" target="_blank" rel="noopener">GitHub ↗</a>
+        <!-- TODO: verify your LinkedIn URL -->
+        <a class="pill" href="https://www.linkedin.com/in/atharv-bhosale-2749192b0/" target="_blank"
+          rel="noopener">LinkedIn
+          ↗</a>
+        <a class="pill" href="https://www.kaggle.com/bhosaleatharv" target="_blank" rel="noopener">Kaggle ↗</a>
+        <a class="pill" href="assets/Atharv-Bhosale-Resume.pdf" target="_blank" rel="noopener">Download résumé ↗</a>
+
+      </div>
+      <div class="footer">
+        <span>© 2026 Atharv Bhosale</span>
+        <span>Kolhapur · India</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      // nav backdrop on scroll
+      var nav = document.getElementById('nav');
+      function onScrollNav() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+      onScrollNav();
+
+      // hero parallax
+      var media = document.getElementById('heroMedia');
+      var ticking = false;
+      function parallax() {
+        if (window.scrollY < window.innerHeight * 1.2) {
+          media.style.transform = 'translate3d(0,' + (window.scrollY * 0.28) + 'px,0)';
+        }
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        onScrollNav();
+        if (!ticking) { requestAnimationFrame(parallax); ticking = true; }
+      }, { passive: true });
+
+      // reveal on intersection
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+      document.querySelectorAll('.reveal,.reveal-img').forEach(function (el) { io.observe(el); });
+
+      // year
+      var y = new Date().getFullYear();
+      var f = document.querySelector('.footer span'); if (f) f.textContent = '© ' + y + ' Atharv Bhosale';
+    })();
+  </script>
+</body>
+
+</html>
