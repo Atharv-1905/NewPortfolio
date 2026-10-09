@@ -138,6 +138,66 @@
       width: 100%
     }
 
+    /* hamburger button — hidden on desktop */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      position: relative;
+      z-index: 60;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--ink);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: all .3s ease;
+    }
+
+    .nav-toggle span {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .nav-toggle span::before {
+      content: '';
+      top: -6px;
+      left: 0;
+      transform: none;
+    }
+
+    .nav-toggle span::after {
+      content: '';
+      top: 6px;
+      left: 0;
+      transform: none;
+    }
+
+    .nav-toggle.open span {
+      background: transparent;
+    }
+
+    .nav-toggle.open span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle.open span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
     /* ---------- hero ---------- */
     .hero {
       position: relative;
@@ -327,7 +387,9 @@
 
     .work-media {
       position: relative;
-      height: min(88vh, 860px);
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 860px;
       overflow: hidden;
       background: var(--bg-2)
     }
@@ -707,7 +769,7 @@
 
     .gallery-item img {
       width: 100%;
-      height: 350px;
+      height: clamp(220px, 45vw, 350px);
       object-fit: cover;
     }
 
@@ -747,13 +809,50 @@
     }
 
     @media (max-width:900px) {
-      .nav ul li:nth-child(-n+2) {
-        display: none
+
+      /* show hamburger, hide desktop nav links */
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav ul {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        background: rgba(12, 10, 8, .96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .35s ease, visibility .35s ease;
+        z-index: 55;
+      }
+
+      .nav ul.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav ul.open a {
+        font-size: 14px;
+        letter-spacing: .28em;
+      }
+
+      /* show ALL nav items in mobile menu */
+      .nav ul li {
+        display: block !important;
       }
 
       .work-info,
       .about-grid {
         grid-template-columns: 1fr
+      }
+
+      .work:nth-of-type(even) .work-info {
+        direction: ltr;
       }
 
       .work:nth-of-type(even) .work-info>* {
@@ -762,6 +861,10 @@
 
       .work:nth-of-type(even) .work-info p {
         margin-left: 0
+      }
+
+      .work-media {
+        aspect-ratio: 4 / 3;
       }
 
       .stats {
@@ -784,11 +887,47 @@
       .hero-scroll {
         display: none
       }
+
+      .gallery-item {
+        flex: 0 0 80%;
+        max-width: none;
+      }
     }
 
     @media (max-width:560px) {
       .skill-cols {
         grid-template-columns: 1fr
+      }
+
+      .work-media {
+        aspect-ratio: 3 / 2;
+      }
+
+      .gallery-item {
+        flex: 0 0 90%;
+      }
+
+      .contact h2 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        word-break: break-all;
+      }
+
+      .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 10vw, 3.6rem);
+      }
+
+      .nav .brand {
+        font-size: 9px;
+        letter-spacing: .18em;
       }
     }
 
@@ -812,7 +951,8 @@
 
   <nav class="nav" id="nav">
     <a class="brand" href="#top"><b>Data Scientist, Athlete & Artist</b>&nbsp;&nbsp;&nbsp;&nbsp;</a>
-    <ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span></button>
+    <ul id="navMenu">
       <li><a href="#work">Work</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#research">Research</a></li>
@@ -1152,6 +1292,23 @@
       var nav = document.getElementById('nav');
       function onScrollNav() { nav.classList.toggle('scrolled', window.scrollY > 40); }
       onScrollNav();
+
+      // hamburger toggle
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('navMenu');
+      toggle.addEventListener('click', function () {
+        toggle.classList.toggle('open');
+        menu.classList.toggle('open');
+        document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+      });
+      // close menu when a nav link is clicked
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          toggle.classList.remove('open');
+          menu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
 
       // hero parallax
       var media = document.getElementById('heroMedia');
