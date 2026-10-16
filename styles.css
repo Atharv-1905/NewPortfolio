@@ -460,8 +460,11 @@ section {
   letter-spacing: .26em;
   text-transform: uppercase;
   color: var(--ink);
+  background: transparent;
   border: 1px solid var(--line);
   padding: 13px 26px;
+  cursor: pointer;
+  text-decoration: none;
   transition: background .35s, color .35s, border-color .35s
 }
 
